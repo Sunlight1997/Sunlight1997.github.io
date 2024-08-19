@@ -10,6 +10,7 @@ type Props = {
 
 const NavItem = ({ href, title }: Props): JSX.Element => {
   const pathname = usePathname();
+  console.log(pathname, href)
   return (
     <Link href={href}>
       <li
@@ -25,7 +26,7 @@ const NavItem = ({ href, title }: Props): JSX.Element => {
           src="/images/vectors/nav_active.svg"
           alt="nav-active"
           className={`
-              hidden md:block md:opacity-0
+              md:block md:opacity-0
               ${pathname === href && 'md:opacity-100 md:w-100'}
               `}
         />
