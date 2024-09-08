@@ -19,13 +19,13 @@ export default function Projects(): JSX.Element {
   const nextItem = () => {
     setSelectedItem((selectedItem + 1) % data.length);
     if (ref.current.hasOwnProperty('goNext')) {
-      ref.current?.goNext((selectedItem + 1) % data.length);
+      (ref.current as any)?.goNext((selectedItem + 1) % data.length);
     }
   };
   const prevItem = () => {
     setSelectedItem((selectedItem + data.length - 1) % data.length);
     if (ref.current.hasOwnProperty('goBack')) {
-      ref.current?.goBack((selectedItem + data.length - 1) % data.length);
+      (ref.current as any).goBack((selectedItem + data.length - 1) % data.length);
     }
   };
   return (
