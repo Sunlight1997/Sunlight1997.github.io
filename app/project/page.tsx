@@ -31,13 +31,3 @@ const ProjectDetail = (): JSX.Element => {
 };
 
 export default ProjectDetail;
-
-export async function getStaticPaths(): Promise<unknown> {
-  const paths = projectDetails.map((p) => {
-    return { params: { slug: p.slug } };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-}
