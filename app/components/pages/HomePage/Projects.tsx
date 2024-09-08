@@ -18,11 +18,15 @@ export default function Projects(): JSX.Element {
   }));
   const nextItem = () => {
     setSelectedItem((selectedItem + 1) % data.length);
-    ref.current?.goNext((selectedItem + 1) % data.length);
+    if (ref.current.hasOwnProperty('goNext')) {
+      ref.current?.goNext((selectedItem + 1) % data.length);
+    }
   };
   const prevItem = () => {
     setSelectedItem((selectedItem + data.length - 1) % data.length);
-    ref.current?.goBack((selectedItem + data.length - 1) % data.length);
+    if (ref.current.hasOwnProperty('goBack')) {
+      ref.current?.goBack((selectedItem + data.length - 1) % data.length);
+    }
   };
   return (
     <>
@@ -109,10 +113,16 @@ export default function Projects(): JSX.Element {
               );
             }}
           ></ResponsiveContainer>
-          <button onClick={nextItem} className="absolute bg-pink right-0 h-[100px] w-[30px] rounded-[12px] -translate-y-1/2 top-1/2">
+          <button
+            onClick={nextItem}
+            className="absolute bg-pink right-0 h-[100px] w-[30px] rounded-[12px] -translate-y-1/2 top-1/2"
+          >
             {'>'}
           </button>
-          <button onClick={prevItem} className="absolute bg-pink left-0 h-[100px] w-[30px] rounded-[12px] -translate-y-1/2 top-1/2">
+          <button
+            onClick={prevItem}
+            className="absolute bg-pink left-0 h-[100px] w-[30px] rounded-[12px] -translate-y-1/2 top-1/2"
+          >
             {'<'}
           </button>
         </div>
