@@ -37,7 +37,7 @@ const work: Work = {
 
 const personalDetails: PersonalDetails = {
   name: 'Roman Jakub',
-  logo: 'images/logo-light.svg',
+  logo: 'images/logo-light.png',
   about: 'Senior Full Stack Developer',
   work,
   socialMedia: socialMedias,
