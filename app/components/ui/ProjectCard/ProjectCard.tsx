@@ -33,23 +33,20 @@ let resizeTO: any = null;
 
 const ProjectCard = React.memo(function (props: StackedCarouselProps): JSX.Element {
   const { slug, tagline, description, img, name, tags, github, category, featured, url, selected, reRender } =
-    props.data[props.dataIndex];
-  const { width, _, ref } = useResizeDetector();
-  const onImageLoad = (e) => {
+    props.data[(props as any).dataIndex];
+  const { width, height, ref } = useResizeDetector();
+  const onImageLoad = (e: any) => {
     dimension = { height: e.nativeEvent.srcElement.naturalHeight, width: e.nativeEvent.srcElement.naturalWidth };
   };
 
-  let height = 500;
-  if (width) height = (width / dimension.width) * dimension.height;
-  console.log(height);
+  let realheight = 500;
+  if (width) realheight = (width / dimension.width) * dimension.height;
+  console.log(realheight);
   return (
     <>
       {/* <Tilt className="Tilt cursor-pointer"> */}
-      <div
-        ref={ref}
-        className={`w-full h-[400px] my-10 mx-8 lg:mx-16 rounded-2xl`}
-      >
-        {selected == props.dataIndex ? (
+      <div ref={ref} className={`w-full h-[400px] my-10 mx-8 lg:mx-16 rounded-2xl`}>
+        {selected == (props as any).dataIndex ? (
           <a href={url}>
             <img src={img} alt={name} className="rounded-2xl w-full h-auto object-cover" onLoad={onImageLoad} />
           </a>

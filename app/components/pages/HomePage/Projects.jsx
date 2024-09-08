@@ -6,7 +6,7 @@ import { Project } from 'shared/utils/types';
 import { projectDetails } from 'shared/utils/consts';
 import { ResponsiveContainer, StackedCarousel } from 'react-stacked-center-carousel';
 
-export default function Projects(): JSX.Element {
+export default function Projects() {
   const router = useRouter();
   const ref = useRef(StackedCarousel);
   const [selectedItem, setSelectedItem] = useState(0);
@@ -19,13 +19,13 @@ export default function Projects(): JSX.Element {
   const nextItem = () => {
     setSelectedItem((selectedItem + 1) % data.length);
     if (ref.current.hasOwnProperty('goNext')) {
-      (ref.current as any)?.goNext((selectedItem + 1) % data.length);
+      (ref.current)?.goNext((selectedItem + 1) % data.length);
     }
   };
   const prevItem = () => {
     setSelectedItem((selectedItem + data.length - 1) % data.length);
     if (ref.current.hasOwnProperty('goBack')) {
-      (ref.current as any).goBack((selectedItem + data.length - 1) % data.length);
+      (ref.current).goBack((selectedItem + data.length - 1) % data.length);
     }
   };
   return (
