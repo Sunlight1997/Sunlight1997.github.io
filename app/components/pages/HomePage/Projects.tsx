@@ -1,26 +1,42 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { TextCard, Button, HeaderSmall, ProjectCard } from 'app/components/ui';
 import { Project } from 'shared/utils/types';
 import { projectDetails } from 'shared/utils/consts';
+import { ResponsiveContainer, StackedCarousel } from 'react-stacked-center-carousel';
 
 export default function Projects(): JSX.Element {
   const router = useRouter();
-  console.log(router)
+  const ref = useRef(StackedCarousel);
+  const [selectedItem, setSelectedItem] = useState(0);
+  const [reRender, setReRender] = useState(false);
+  const data = projectDetails.map((detail, index) => ({
+    ...detail,
+    selected: selectedItem,
+    reRender: () => setReRender(!reRender),
+  }));
+  const nextItem = () => {
+    setSelectedItem((selectedItem + 1) % data.length);
+    ref.current?.goNext((selectedItem + 1) % data.length);
+  };
+  const prevItem = () => {
+    setSelectedItem((selectedItem + data.length - 1) % data.length);
+    ref.current?.goBack((selectedItem + data.length - 1) % data.length);
+  };
   return (
     <>
       <div>
-        <div className="relative h-auto py-10 lg:py-20">
+        <div className="relative h-auto">
           <img
             src="/images/vectors/heart.svg"
             alt="Circle Vector"
             className="absolute -right-50p md:-right-96 bottom-16 md:-bottom-20 pointer-events-none animate-pulse"
           />
-          <div className="ml-4 sm:mx-12 md:mx-16 grid grid-cols-12 gap-4 h-auto place-items-center items-center">
-            <div className="col-span-12 md:col-span-7 lg:col-span-6 flex flex-col justify-center items-center">
+          <div className="flex justify-between mx-[130px] px-[20px] pt-[100px]">
+            <div className="">
               {/* Hero Header */}
-              <div className="items-center w-3/4 relative">
+              <div className="">
                 <img
                   src="/images/vectors/boxes.svg"
                   alt="Box Vector"
@@ -35,19 +51,10 @@ export default function Projects(): JSX.Element {
                 <h1 className="mb-3 mt-6 text-4xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-1xl font-extrabold text-white leading-none ">
                   Something he has <span className="text-pink font-bold">built.</span>
                 </h1>
-                <div className="sm:ml-52 xl:ml-96 transform rotate-90">
-                  <Link href="#projects">
-                    <img
-                      src="/images/vectors/arrows-right.svg"
-                      alt="Next"
-                      className="hidden lg:block w-14 lg:mt-24 xl:mt-16 sm:mt-0 transform-all animate-translateright "
-                    />
-                  </Link>
-                </div>
               </div>
             </div>
             {/* FIXME Make thie cards of this page dyanmic */}
-            <div className="relative col-span-12 md:col-span-5 lg:col-span-6 flex flex-col">
+            <div className="relative flex flex-col">
               <div className="w-64 h-auto shadow-light-xl hover:shadow-light-3xl transform transition-all duration-300 hover:scale-110">
                 <TextCard
                   heading="Websites"
@@ -72,7 +79,7 @@ export default function Projects(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="relative h-auto sm:h-auto md:h-auto ml-4 sm:mx-12 md:mx-16" id="projects">
+        {/* <div className="relative h-auto sm:h-auto md:h-auto ml-4 sm:mx-12 md:mx-16" id="projects">
           <div className="grid md:grid-cols-2 gap-4 place-items-center">
             {projectDetails.map((project: Project) => (
               <ProjectCard project={project} key={project.slug} filter={{ key: 'featured', value: true }} />
@@ -81,6 +88,33 @@ export default function Projects(): JSX.Element {
           <div className="flex justify-center mt-10 lg:mt-4">
             <Button type="solid" text="Show me more! 🔥" onClickHandler={() => router.push('/projects')} />
           </div>
+        </div> */}
+        <div className="relative h-auto mx-[130px] px-[20px] pt-[100px]">
+          <ResponsiveContainer
+            carouselRef={ref}
+            render={(width, carouselRef) => {
+              let visibleSlide = 5;
+              let customScale = [1, 0.5, 0.45, 0.4];
+              return (
+                <StackedCarousel
+                  ref={carouselRef}
+                  slideComponent={ProjectCard}
+                  slideWidth={850}
+                  carouselWidth={width}
+                  data={data}
+                  maxVisibleSlide={visibleSlide}
+                  disableSwipe
+                  customScales={customScale}
+                ></StackedCarousel>
+              );
+            }}
+          ></ResponsiveContainer>
+          <button onClick={nextItem} className="absolute bg-pink right-0 h-[100px] w-[30px] rounded-[12px] -translate-y-1/2 top-1/2">
+            {'>'}
+          </button>
+          <button onClick={prevItem} className="absolute bg-pink left-0 h-[100px] w-[30px] rounded-[12px] -translate-y-1/2 top-1/2">
+            {'<'}
+          </button>
         </div>
       </div>
     </>

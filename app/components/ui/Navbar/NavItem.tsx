@@ -10,7 +10,6 @@ type Props = {
 
 const NavItem = ({ href, title }: Props): JSX.Element => {
   const pathname = usePathname();
-  console.log(pathname, href)
   return (
     <Link href={href}>
       <li

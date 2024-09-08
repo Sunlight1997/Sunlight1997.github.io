@@ -28,9 +28,9 @@ module.exports = {
         '90vh': '90vh'
       },
       colors: {
-        blue: '#232946',
-        pink: '#EEBBC3',
-        violet: '#B8C1EC',
+        blue: '#303030',
+        pink: '#00EB94',
+        violet: '#FFFFFF',
         white: '#FFFFFE'
       },
       animation: {

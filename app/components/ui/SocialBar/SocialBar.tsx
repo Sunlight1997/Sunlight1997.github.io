@@ -13,7 +13,7 @@ function SocialIcon({ alt_text, image_file, link }: Props): JSX.Element {
       <img
         src={image_file}
         alt={alt_text}
-        className="w-6 md:w-8 mb-2 md:my-2 transition-all hover:opacity-40 transform hover:scale-75"
+        className="w-6 md:w-8 mb-2 md:my-2 transition-all transform hover:scale-110"
       />
     </a>
   );

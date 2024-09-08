@@ -36,7 +36,6 @@ export async function getStaticPaths(): Promise<unknown> {
   const paths = projectDetails.map((p) => {
     return { params: { slug: p.slug } };
   });
-  console.log(paths);
   return {
     paths,
     fallback: false,
