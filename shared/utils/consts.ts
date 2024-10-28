@@ -139,7 +139,7 @@ const githubRepoDetail = {
 // responsibilities: string[];
 const companyDetails: Company[] = [
   {
-    name: 'Sdclabs',
+    name: 'EchoGlobal',
     logo_url: 'images/companies/sdclabs.png',
     featured: true,
     position: 'Senior Full Stack Developer',
@@ -155,7 +155,7 @@ const companyDetails: Company[] = [
     ],
   },
   {
-    name: 'eDrone',
+    name: 'IBM iX',
     logo_url: 'images/companies/enDrone.png',
     featured: true,
     position: 'Senior Full Stack Developer',
@@ -170,7 +170,7 @@ const companyDetails: Company[] = [
     ],
   },
   {
-    name: 'Scand',
+    name: 'Armorerlink',
     logo_url: 'images/companies/Scand.png',
     featured: true,
     position: 'Full Stack Developer',
@@ -188,7 +188,7 @@ const companyDetails: Company[] = [
     ],
   },
   {
-    name: 'Apzumi',
+    name: 'Espeo Software',
     logo_url: 'images/companies/Apzumi.png',
     featured: true,
     position: 'Web Developer',

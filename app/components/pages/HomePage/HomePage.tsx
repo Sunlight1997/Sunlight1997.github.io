@@ -18,7 +18,6 @@ const HomePage = (): JSX.Element => {
           <Skills />
           {/* <WordCloud /> */}
           <Projects />
-          <WorkPage />
           <Contact />
         </div>
       </div>
